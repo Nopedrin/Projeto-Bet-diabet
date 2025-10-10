@@ -8,13 +8,14 @@
 </head>
 <body>
   <section class="home">
-    <a href="D:\\diabet\\Home\\diabet.html">
+    <a href="index.html">
       <img src="https://media.discordapp.net/attachments/1408265472209846302/1422599375242264727/raw.png?ex=68dd4269&is=68dbf0e9&hm=7ce20fc25e23136d3c5e959f04dc75fc9a5e57f7e33987554802e9d20deb5dec&=&format=webp&quality=lossless&width=385&height=578" />
     </a>
     <h1>DiaBET</h1>
     <nav class="botoesHome">
-      <a href="D:\\diabet\\Home\\diabet.html">Menu</a>
-      <a>Minha conta</a>
+      <a href="index.html">Menu</a>
+      <a href="login.html">Minha conta</a>
+      <div id="saldoBox" class="saldo"></div>
     </nav>
   </section>
   <div class="slots-game">
@@ -27,6 +28,7 @@
       </div>
     </div>
     <div class="controls">
+      <input type="number" id="valorAposta" placeholder="Valor da aposta" min="1">
       <button id="spinBtn">Girar</button>
     </div>
     <p id="resultado"></p>
@@ -36,49 +38,7 @@
     <br>
     <p>Precisa ler tudo que ta no site mesmo?</p>
   </section>
+  <script src="./js/pages/slots/slots.js"></script>
+  <script src="./js/global/fixed.js"></script>
 </body>
-  <script>
-    const symbols = ["🍒", "🍋", "🍉", "💎", "🔔", "⭐", "🍀"];
-    const reels = [
-      document.getElementById("reel1"),
-      document.getElementById("reel2"),
-      document.getElementById("reel3")
-    ];
-    const spinBtn = document.getElementById("spinBtn");
-    const resultado = document.getElementById("resultado");
-
-    function girarSlots() {
-      spinBtn.disabled = true;
-      resultado.textContent = "";
-      let results = ["", "", ""];
-
-      reels.forEach((reel, i) => {
-        const interval = setInterval(() => {
-          reel.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        }, 100);
-
-        setTimeout(() => {
-          clearInterval(interval);
-          results[i] = reel.textContent;
-          if (i === 2) verificarResultado(results);
-        }, 1000 + i * 400);
-      });
-    }
-
-    function verificarResultado(r) {
-      if (r[0] === r[1] && r[1] === r[2]) {
-        resultado.textContent = `🎉 JACKPOT! Você ganhou 10x! (${r[0]} ${r[1]} ${r[2]})`;
-        resultado.style.color = "#00ff88";
-      } else if (r[0] === r[1] || r[1] === r[2] || r[0] === r[2]) {
-        resultado.textContent = `💰 Você ganhou 2x! (${r[0]} ${r[1]} ${r[2]})`;
-        resultado.style.color = "#ffd700";
-      } else {
-        resultado.textContent = `😢 Nenhuma combinação. Tente novamente! (${r[0]} ${r[1]} ${r[2]})`;
-        resultado.style.color = "#ff5555";
-      }
-      spinBtn.disabled = false;
-    }
-
-    spinBtn.addEventListener("click", girarSlots);
-  </script>
 </html>

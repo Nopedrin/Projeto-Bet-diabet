@@ -8,14 +8,14 @@
     </head>
     <body>
         <section class="home">
-            <a href="..\Home\diabet.html">
+            <a href="index.html">
                 <img src="https://media.discordapp.net/attachments/1408265472209846302/1422599375242264727/raw.png?ex=68dd4269&is=68dbf0e9&hm=7ce20fc25e23136d3c5e959f04dc75fc9a5e57f7e33987554802e9d20deb5dec&=&format=webp&quality=lossless&width=385&height=578" />
             </a>
                 <h1>DiaBET</h1>
             <nav class="botoesHome">
-                <a href="C:\Users\duatg\Desktop\diabet\Home\diabet.html">Menu</a>
-                <a>Extrato</a>
-                <a>Minha conta</a>
+                <a href="index.html">Menu</a>
+                <a href="login.html">Minha conta</a>
+                <div id="saldoBox" class="saldo"></div>
             </nav>
         </section>
         <div class="container">
@@ -33,7 +33,11 @@
                     <option value="branca">Branca (0)</option>
                 </select>
             </div>
-            <button onclick="apostar()">Apostar!</button>
+            <div id="valorApostaContainer" class="valorApostaContainer">
+                <span>R$</span>
+                <input type="number" id="valorAposta" placeholder="Valor da Aposta" min="1" before="R$" required="">
+            </div>
+            <button id="apostar" onclick="apostar()">Apostar!</button>
             <div id="roleta" class="roleta">🎰</div>
             <div id="resultado" class="resultado"></div>
             </div>
@@ -44,79 +48,6 @@
             <p>Precisa ler tudo que ta no site mesmo?</p>
         </section>
     </body>
-    <script>
-        const apostaTipo = document.getElementById('apostaTipo');
-        const apostaEscolhaContainer = document.getElementById('apostaEscolhaContainer');
-        const roletaDiv = document.getElementById('roleta');
-        const resultadoDiv = document.getElementById('resultado');
-
-        apostaTipo.addEventListener('change', () => {
-            const tipo = apostaTipo.value;
-            let html = '';
-            if (tipo === 'cor') {
-                html = `
-                    <select id="apostaEscolha">
-                        <option value="vermelha">Vermelha</option>
-                        <option value="preta">Preta</option>
-                        <option value="branca">Branca (0)</option>
-                    </select>
-                `;
-            } else if (tipo === 'parImpar') {
-                html = `
-                    <select id="apostaEscolha">
-                        <option value="par">Par</option>
-                        <option value="impar">Ímpar</option>
-                        <option value="zero">Zero</option>
-                    </select>
-                `;
-            } else if (tipo === 'numero') {
-                html = `<input type="number" id="apostaEscolha" min="0" max="36" value="0">`;
-            }
-            apostaEscolhaContainer.innerHTML = html;
-        });
-
-        function apostar() {
-            const tipo = apostaTipo.value;
-            let escolha;
-            if (tipo === 'numero') {
-                escolha = parseInt(document.getElementById('apostaEscolha').value);
-            } else {
-                escolha = document.getElementById('apostaEscolha').value;
-            }
-
-            resultadoDiv.innerText = '';
-            roletaDiv.innerText = 'Girando... 🎲';
-
-            let contador = 0;
-            const intervalo = setInterval(() => {
-                const tempNum = Math.floor(Math.random() * 37);
-                roletaDiv.innerText = tempNum;
-                contador++;
-                if (contador > 20) clearInterval(intervalo);
-            }, 80);
-
-            setTimeout(() => {
-                const numeroRoleta = Math.floor(Math.random() * 37);
-                let cor;
-                if (numeroRoleta === 0) cor = 'branca';
-                else if (numeroRoleta % 2 === 0) cor = 'preta';
-                else cor = 'vermelha';
-
-                roletaDiv.innerText = `${numeroRoleta} (${cor})`;
-
-                let ganhou = false;
-                if (tipo === 'cor') {
-                    if (escolha === cor) ganhou = true;
-                } else if (tipo === 'parImpar') {
-                    if (numeroRoleta === 0 && escolha === 'zero') ganhou = true;
-                    else if (numeroRoleta % 2 === 0 && escolha === 'par') ganhou = true;
-                    else if (numeroRoleta % 2 !== 0 && escolha === 'impar') ganhou = true;
-                } else if (tipo === 'numero') {
-                    if (escolha === numeroRoleta) ganhou = true;
-                }
-
-                resultadoDiv.innerText = ganhou ? '🎉 Você GANHOU!' : '❌ Você PERDEU!';
-            }, 1800);
-        }
-    </script>
+    <script src="./js/pages/roleta/roleta.js"></script>
+    <script src="./js/pages/index/index.js"></script>
 </html>
