@@ -1,0 +1,108 @@
+@import url("../../global/fixed.css");
+
+.slots-game {
+  width: 80%;
+  max-width: 700px;
+  color: #fff;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.slots-area {
+  height: 50vh;
+  background: linear-gradient(180deg, #292929, #1a1a1a);
+  border: 2px solid #333;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.slots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.reel {
+  width: 100px;
+  height: 100px;
+  background-color: #111;
+  border: 2px solid #00ff88;
+  border-radius: 10px;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px #00ff88;
+  transition: transform 0.3s ease, background 0.3s;
+}
+
+.reel:active {
+  transform: scale(0.95);
+  background-color: #0f0f0f;
+}
+
+#resultado {
+  font-size: 1.2rem;
+  margin-top: 15px;
+  text-shadow: 0 0 8px rgba(255,255,255,0.3);
+}
+
+.controls {
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#valorAposta {
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #00ff88;
+  border-radius: 8px;
+  background-color: #111;
+  color: #fff;
+  box-shadow: 0 0 8px #00ff88;
+  width: 150px;
+  text-align: center;
+}
+
+#spinBtn {
+  background: linear-gradient(90deg, #00ff88, #00cc6a);
+  border: none;
+  color: #111;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 12px 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 12px #00ff88;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+#spinBtn:hover {
+  background: linear-gradient(90deg, #00cc6a, #00ff88);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ff88;
+}
+
+#spinBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.rodaPe {
+    background-color: rgb(22,22,22);
+    color: white;
+    width: 100%;
+    padding: 20px;
+    margin-top: 30px;
+    text-align: center;
+}
